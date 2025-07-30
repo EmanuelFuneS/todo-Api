@@ -7,6 +7,8 @@ class Settings(BaseSettings):
     collection_name: str = "todos"
     
     class Config:
-        env_file=".env"
+        env_file = os.path.join(os.path.dirname(__file__), ".env")
+        case_sensitive = False
         
+
 settings = Settings()

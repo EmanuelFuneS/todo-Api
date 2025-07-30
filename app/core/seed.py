@@ -15,6 +15,7 @@ class MongoSeeder:
         self.db = self.client[settings.database_name]
     
     async def close_connection(self):
+
         self.client.close()
 
     async def clear_collection(self, collection_name: str):
