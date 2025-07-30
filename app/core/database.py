@@ -1,19 +1,18 @@
 import os
 import pymongo
-from pymongo import AsyncMongoClient
-from pymongo import ReturnDocument
+from motor.motor_asyncio import AsyncIOMotorClient
 from pymongo.server_api import ServerApi
-from config import settings
+from .config import settings
 
 class Database:
-    client: AsyncMongoClient = None
+    client: AsyncIOMotorClient = None
     database = None
     
 db= Database()
 
 async def connect_to_mongo():
     
-    db.client=AsyncMongoClient(os.environ["MONGODB_URL"], server_api=pymongo.server_api.ServiceApi(version="1", strict=True, deprecation_errors=True))
+    db.client=AsyncIOMotorClient(settings.mongodb_url, server_api=ServerApi(version="1", strict=True, deprecation_errors=True))
 
     db.database = db.client[settings.database_name]
 

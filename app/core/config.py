@@ -1,8 +1,8 @@
 import os
-from pydantic_settings import baseSettings
+from pydantic_settings import BaseSettings
 
-class Settings(baseSettings):
-    mongodb_url= str
+class Settings(BaseSettings):
+    mongodb_url: str = "mongodb://localhost:27017"
     database_name: str = "todo_db"
     collection_name: str = "todos"
     
