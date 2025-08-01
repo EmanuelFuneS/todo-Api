@@ -38,7 +38,7 @@ async def test_db(mongodb_client):
 
 @pytest_asyncio.fixture(scope="function")
 async def todo_repo(test_db):
-    """Fixture que proporciona una instancia de TodoRepository con la base de datos de prueba"""
+   
     return TodoRepository(db=test_db)
 
 @pytest_asyncio.fixture(scope="function")

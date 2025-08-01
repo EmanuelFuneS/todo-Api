@@ -13,7 +13,6 @@ router = APIRouter(prefix="/todos", tags=["todos"])
     response_description="Create new todo"
 )
 async def create_todo(todo: TodoModel = Body(...)):
-    """Create a new todo item."""
     todo_service = TodoService()
     return await todo_service.create_todo(todo)
 
@@ -23,7 +22,6 @@ async def create_todo(todo: TodoModel = Body(...)):
     response_description="List all todos"
 )
 async def list_todos(completed: Optional[bool] = Query(None, description="Filter by completion status")):
-    """List all todos, optionally filtered by completion status."""
     todo_service = TodoService()
     return await todo_service.get_all_todos(completed)
 
@@ -33,7 +31,6 @@ async def list_todos(completed: Optional[bool] = Query(None, description="Filter
     response_description="Get todo by ID"
 )
 async def get_todo(todo_id: str):
-    """Get a specific todo by ID."""
     todo_service = TodoService()
     return await todo_service.get_todo_by_id(todo_id)
 
@@ -43,7 +40,6 @@ async def get_todo(todo_id: str):
     response_description="Update todo"
 )
 async def update_todo(todo_id: str, todo_update: UpdateTodoModel = Body(...)):
-    """Update a todo item."""
     todo_service = TodoService()
     return await todo_service.update_todo(todo_id, todo_update)
 
@@ -53,7 +49,6 @@ async def update_todo(todo_id: str, todo_update: UpdateTodoModel = Body(...)):
     response_description="Delete todo"
 )
 async def delete_todo(todo_id: str):
-    """Delete a todo item."""
     todo_service = TodoService()
     await todo_service.delete_todo(todo_id)
     return Response(status_code=status.HTTP_204_NO_CONTENT)

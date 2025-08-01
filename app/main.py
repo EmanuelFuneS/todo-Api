@@ -7,7 +7,7 @@ async def lifespan(app: FastAPI):
     try:
         await connect_to_mongo()
     except Exception as e:
-        print(f"❌ Error conectando DB: {e}")
+        print(f"❌ Error conn DB: {e}")
     
     yield
     
@@ -26,7 +26,7 @@ try:
     app.include_router(todos.router, prefix="/api/v1")
 
 except Exception as e:
-    print(f"⚠️ Error loading roustes: {e}")
+    print(f"⚠️ Error loading routes: {e}")
 
 @app.get("/")
 async def root():
