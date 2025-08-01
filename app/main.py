@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from .core.database import connect_to_mongo, close_mongo_connection, db
+from fastapi.responses import RedirectResponse
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -30,12 +31,7 @@ except Exception as e:
 
 @app.get("/")
 async def root():
-    return {
-        "message": "¡TODO API Ready!", 
-        "docs": "/docs",
-        "redoc": "/redoc",
-        "status": "OK"
-    }
+    return RedirectResponse(url="/docs")
 
 @app.get("/health")
 async def health_check():
