@@ -1,11 +1,11 @@
 from typing import List, Optional
 from fastapi import HTTPException, status
-from ..repositories.todo_repo import todo_repository
+from ..repositories.todo_repo import TodoRepository
 from ..models.todo import TodoModel, UpdateTodoModel
 
 class TodoService:
-    def __init__(self):
-        self.repository = todo_repository
+    def __init__(self, db=None):
+        self.repository = TodoRepository(db)
     
     async def create_todo(self, todo: TodoModel) -> TodoModel:
         try:
@@ -76,5 +76,3 @@ class TodoService:
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 detail=f"Error deleting todo: {str(e)}"
             )
-
-todo_service = TodoService()

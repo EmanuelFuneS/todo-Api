@@ -2,7 +2,7 @@ from typing import List, Optional
 from fastapi import APIRouter, Body, status, Query
 from fastapi.responses import Response
 from ..models.todo import TodoModel, UpdateTodoModel
-from ..services.todo_service import todo_service
+from ..services.todo_service import TodoService
 
 router = APIRouter(prefix="/todos", tags=["todos"])
 
@@ -14,6 +14,7 @@ router = APIRouter(prefix="/todos", tags=["todos"])
 )
 async def create_todo(todo: TodoModel = Body(...)):
     """Create a new todo item."""
+    todo_service = TodoService()
     return await todo_service.create_todo(todo)
 
 @router.get(
@@ -23,6 +24,7 @@ async def create_todo(todo: TodoModel = Body(...)):
 )
 async def list_todos(completed: Optional[bool] = Query(None, description="Filter by completion status")):
     """List all todos, optionally filtered by completion status."""
+    todo_service = TodoService()
     return await todo_service.get_all_todos(completed)
 
 @router.get(
@@ -32,6 +34,7 @@ async def list_todos(completed: Optional[bool] = Query(None, description="Filter
 )
 async def get_todo(todo_id: str):
     """Get a specific todo by ID."""
+    todo_service = TodoService()
     return await todo_service.get_todo_by_id(todo_id)
 
 @router.put(
@@ -41,6 +44,7 @@ async def get_todo(todo_id: str):
 )
 async def update_todo(todo_id: str, todo_update: UpdateTodoModel = Body(...)):
     """Update a todo item."""
+    todo_service = TodoService()
     return await todo_service.update_todo(todo_id, todo_update)
 
 @router.delete(
@@ -50,5 +54,6 @@ async def update_todo(todo_id: str, todo_update: UpdateTodoModel = Body(...)):
 )
 async def delete_todo(todo_id: str):
     """Delete a todo item."""
+    todo_service = TodoService()
     await todo_service.delete_todo(todo_id)
     return Response(status_code=status.HTTP_204_NO_CONTENT)

@@ -18,5 +18,3 @@ async def test_connection():
         pytest.fail(f"Connection failed: {e}")
     finally:
         client.close()
-
-asyncio.run(test_connection())
