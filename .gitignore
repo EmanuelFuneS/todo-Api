@@ -1,13 +1,27 @@
+__pycache__
+.pytest_cache/
+pycache/ 
+*.pyc 
+*.pyo 
+*.pyd 
+.Python 
+*.egg-info/ 
+build/ 
+dist/
+
+venv/ 
+env/ 
+.venv/
+
+.env
 *.env
 
-__pycache__/
-*.py[cod]
-*$py.class
+*.log 
+*.pid 
+*.seed 
+*.sqlite3
 
-*.db
-*.sqlite
-logs/
-*.log
-uploads/
-venv/
-.venv
+.vscode/ 
+.idea/
+
+.DS_Store

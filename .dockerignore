@@ -1,0 +1,7 @@
+tests/
+pytest.ini
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
